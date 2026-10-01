@@ -25,3 +25,11 @@ export function useCreateNote() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ["notes"] }),
   });
 }
+
+export function useClearNotes() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: () => base44.entities.Note.deleteMany({}),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["notes"] }),
+  });
+}

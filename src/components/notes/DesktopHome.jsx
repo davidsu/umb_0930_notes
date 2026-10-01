@@ -4,8 +4,9 @@ import SearchInput from "./SearchInput";
 import NoteList from "./NoteList";
 import NoteComposer from "./NoteComposer";
 import NoteView from "./NoteView";
+import ClearNotesButton from "./ClearNotesButton";
 
-export default function DesktopHome({ notes, isLoading, search, setSearch, selected, setSelected, onSave, saving }) {
+export default function DesktopHome({ notes, isLoading, search, setSearch, selected, setSelected, onSave, saving, onClear, clearing }) {
   return (
     <div className="flex h-screen">
       <aside className="w-[320px] shrink-0 border-r border-[#E8E6E1] flex flex-col">
@@ -21,6 +22,7 @@ export default function DesktopHome({ notes, isLoading, search, setSearch, selec
         </div>
         <div className="flex-1 overflow-y-auto p-3">
           <NoteList notes={notes} isLoading={isLoading} selectedId={selected?.id} onSelect={setSelected} search={search} />
+          {notes.length > 0 && <ClearNotesButton onClear={onClear} clearing={clearing} />}
         </div>
       </aside>
       <main className="flex-1 overflow-y-auto">
