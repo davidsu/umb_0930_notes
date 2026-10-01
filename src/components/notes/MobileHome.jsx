@@ -5,8 +5,9 @@ import NoteList from "./NoteList";
 import NoteComposer from "./NoteComposer";
 import NoteView from "./NoteView";
 import MobileSheet from "./MobileSheet";
+import ClearNotesButton from "./ClearNotesButton";
 
-export default function MobileHome({ notes, isLoading, search, setSearch, selected, setSelected, onSave, saving }) {
+export default function MobileHome({ notes, isLoading, search, setSearch, selected, setSelected, onSave, saving, onClear, clearing }) {
   const [composing, setComposing] = useState(false);
 
   return (
@@ -17,6 +18,7 @@ export default function MobileHome({ notes, isLoading, search, setSearch, select
       </header>
       <div className="px-4 pt-4">
         <NoteList notes={notes} isLoading={isLoading} selectedId={null} onSelect={setSelected} search={search} />
+        {notes.length > 0 && <ClearNotesButton onClear={onClear} clearing={clearing} />}
       </div>
       <button
         onClick={() => setComposing(true)}
